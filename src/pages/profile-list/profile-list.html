@@ -19,8 +19,7 @@
 <ion-content padding >
   <div *ngIf="!Online; else showOnline">
     <ion-list *ngFor="let profile of profileList |async">
-      <div *ngIf="profile.key!=uid">
-        <ion-item (click)="selectProfile(profile)">
+        <ion-item *ngIf="profile.key!=uid" (click)="selectProfile(profile)">
           <ion-avatar item-left>
             <img [src]="profile.avatar">
           </ion-avatar>
@@ -28,14 +27,12 @@
             {{profile.firstName}}  {{profile.lastName}} {{profile.isOnline?"(Online)":"(Offline)"}}
           </h2>
         </ion-item>
-      </div>
     </ion-list>
   </div>
 
   <ng-template #showOnline>
     <ion-list *ngFor="let profile of profileList |async">
-      <div *ngIf="profile.key!=uid">
-        <ion-item *ngIf="profile.isOnline" (click)="selectProfile(profile)">
+        <ion-item *ngIf="profile.key!=uid && profile.isOnline" (click)="selectProfile(profile)">
           <ion-avatar item-left>
             <img [src]="profile.avatar">
           </ion-avatar>
@@ -43,7 +40,6 @@
             {{profile.firstName}}  {{profile.lastName}} {{profile.isOnline?"(Online)":"(Offline)"}}
           </h2>
         </ion-item>
-      </div>
     </ion-list>
   </ng-template>
 

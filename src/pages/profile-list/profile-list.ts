@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from './../../model/profile.interface';
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Generated class for the ProfileListPage page.
  *
@@ -21,8 +22,7 @@ export class ProfileListPage {
   Online: boolean;
   profileList: Observable<any[]>;
   uid: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase) {
-    this.uid = this.navParams.get('uid');
+  constructor(private afAuth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase) {
     
     this.profileList = this.db.list('profiles').valueChanges();
     
@@ -30,6 +30,7 @@ export class ProfileListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileListPage');
+    this.uid = this.afAuth.auth.currentUser.uid;
   }
 
   selectProfile(profile:Profile){
