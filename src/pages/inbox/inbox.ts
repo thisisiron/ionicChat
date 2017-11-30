@@ -21,9 +21,8 @@ export class InboxPage {
   email: string;
   password: string;
   messageList: Message[] = MESSAGE_LIST;
-  uid: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth) {
-    this.uid = this.navParams.data.uid;
   }
 
   ionViewDidLoad() {
@@ -31,7 +30,7 @@ export class InboxPage {
   }
 
   nav2Profiles() {
-    this.navCtrl.push('ProfileListPage', {uid:this.uid});
+    this.navCtrl.push('ProfileListPage');
   }
 
   

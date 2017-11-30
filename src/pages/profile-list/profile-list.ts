@@ -34,7 +34,7 @@ export class ProfileListPage {
   }
 
   selectProfile(profile:Profile){
-    this.navCtrl.push('MessagePage', {"profile":profile});
+    this.navCtrl.push('MessagePage', {profile:profile});
   }
 
 
