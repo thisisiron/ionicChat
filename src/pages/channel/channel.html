@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ChannelPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar>
+      <ion-title>channel</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="showAddChannelAlert()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-list>
+      <ion-item *ngFor="let channel of channelList |async" (click)="selectChannel(channel)">
+        #{{channel.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
