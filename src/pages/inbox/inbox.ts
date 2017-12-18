@@ -12,9 +12,9 @@ import { Observable } from 'rxjs/Observable';
 
 interface DBMessage {
   content: string;
-  fromId: string;
+  fromID: string;
   fromName: string;
-  toId: string;
+  toID: string;
   toName: string;
 }
 
@@ -46,12 +46,14 @@ export class InboxPage {
     console.log('ionViewDidLoad InboxPage');
     console.log(this.myid)
 
-    this.messageList = this.db.list(`lastMessage/${this.myid}`).valueChanges().map((msgs: Peer[])=>{
+    this.messageList = this.db.list(`last-messages/${this.myid}`).valueChanges().map((msgs: Peer[])=>{
+      console.log(msgs);
       msgs.map((peer:Peer)=>{
-        this.db.object(`/message/${peer.msgkey}`).valueChanges().subscribe((DBmsg:DBMessage)=>{
+        console.log(peer);
+        this.db.object(`/messages/${peer.msgkey}`).valueChanges().subscribe((DBmsg:DBMessage)=>{
           peer.content = DBmsg.content;
-          peer.name = (DBmsg.fromId == this.myid) ? DBmsg.toName : DBmsg.fromName;
-          peer.id = (DBmsg.fromId == this.myid) ? DBmsg.toId : DBmsg.fromId;
+          peer.name = (DBmsg.fromID == this.myid) ? DBmsg.toName : DBmsg.fromName;
+          peer.id = (DBmsg.fromID == this.myid) ? DBmsg.toID : DBmsg.fromID;
         });
       });
       console.log(msgs);
@@ -64,6 +66,7 @@ export class InboxPage {
   }
 
   selectPerson(msg) {
+    console.log(msg)
     this.navCtrl.push('MessagePage', {peer_uid: msg.id});
   }
   

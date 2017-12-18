@@ -18,7 +18,7 @@
             <img src= "assets/imgs/avatar.png" alt="avatar">
           </ion-avatar>
           <h2>{{msg?.name}}</h2>
-          <p>{{msg?.content}}</p> <ion-badge *ngIf="msg.unread" color="danger"></ion-badge>
+          <p>{{msg?.content}}</p> <ion-badge *ngIf="msg.unread" color="danger">{{msg?.unread}}</ion-badge>
         </ion-item>
       </ion-list>
 </ion-content>

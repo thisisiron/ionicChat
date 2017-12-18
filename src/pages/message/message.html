@@ -13,22 +13,22 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding #content>
   <ng-container *ngFor="let msg of messageList |async">
-    <ion-item *ngIf="(msg.fromID == myuid) && (msg.toID == peerid)">
+    <ion-item *ngIf="msg.id == myuid">
       <ion-avatar class="chat_left" item-left>
         <img src="assets/imgs/avatar.png">
       </ion-avatar>
       <h2>{{msg.name}}</h2>
-      <p>{{msg.content}}</p>
+      <p>{{msg.content}} {{msg?.when}}</p>
     </ion-item>
 
-    <ion-item class="chat_right" *ngIf="(msg.toID == myuid) && (msg.fromID==peerid)" >
+    <ion-item class="chat_right" *ngIf="msg.id!=myuid" >
       <ion-avatar item-right>
         <img src="assets/imgs/avatar.png">
       </ion-avatar>
       <h2>{{msg.name}}</h2>
-      <p>{{msg.content}}</p>
+      <p>{{msg.content}} {{msg?.when}}</p>
     </ion-item>
   </ng-container>
 </ion-content>

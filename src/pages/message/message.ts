@@ -25,15 +25,15 @@ interface MessageKey {
   msgkey: string,
   content: string,
   name: string,
-  fromID: string,
-  toID: string,
+  when: string,
+  id: string,
 }
 
 @IonicPage()
 @Component({
   selector: 'page-message',
   templateUrl: 'message.html',
-  queries: { content_: new ViewChild('content') }
+  queries: { xxx: new ViewChild('content') }
 })
 export class MessagePage {
 
@@ -76,15 +76,12 @@ export class MessagePage {
       console.log(msgs);
       msgs.map( (mkey:MessageKey) => {
         console.log(typeof(mkey));
-            this.db.object(`/messages/${mkey.msgkey}`).valueChanges().subscribe( (x:ChatMessage)=> {
+            this.db.object(`/messages/${mkey.msgkey}`).valueChanges().subscribe( (x:{content: string, fromName: string, when: string, fromID: string})=> {
               console.log(x);
               mkey.content = x.content;
-              mkey.fromID = x.fromID;
-              mkey.toID = x.toID;
-              this.db.object(`profiles/${x.fromID}`).valueChanges().subscribe( (y: Profile) => {
-                  console.log(y);
-                  mkey.name =  y.firstName+' '+y.lastName;
-                });
+              mkey.id = x.fromID;
+              mkey.name = x.fromName;
+              mkey.when = x.when;
             });
       });
       console.log(msgs);
@@ -129,7 +126,9 @@ export class MessagePage {
 
     await this.db.list( `messages-by-user/${this.myuid}/${this.peerid}` ).push({msgkey:messageKey});
     await this.db.list( `messages-by-user/${this.peerid}/${this.myuid}` ).push({msgkey:messageKey});
-    if(this.cnt) this.cnt.scrollToBottom(0);  
+
+    if(this.cnt) this.cnt.scrollToBottom(0);   
+
     this.content_=""
   }
 
