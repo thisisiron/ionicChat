@@ -39,7 +39,7 @@ export class ChannelPage {
         },
         {
           text: 'Add',
-          handler: data => { this.addChannel(data.channelName) }
+          handler: data => { console.log(data); this.addChannel(data.channelName) }
         }
       ]
     }).present();

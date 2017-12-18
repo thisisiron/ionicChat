@@ -13,12 +13,12 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let msg of messageList">
+        <ion-item *ngFor="let msg of messageList |async" (click)='selectPerson(msg)'>
           <ion-avatar item-left>
-            <img [src]= "msg.user.avatar" alt="avatar">
+            <img src= "assets/imgs/avatar.png" alt="avatar">
           </ion-avatar>
-          <h2>{{msg.user.firstName}} {{msg.user.lastName}}</h2>
-          <p>{{msg.lastMessage}}</p>
+          <h2>{{msg.name}}</h2>
+          <p>{{msg.content}}</p> <ion-badge *ngIf="msg.unread" color="danger"></ion-badge>
         </ion-item>
       </ion-list>
 </ion-content>

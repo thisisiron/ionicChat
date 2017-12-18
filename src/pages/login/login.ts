@@ -32,6 +32,7 @@ export class LoginPage {
     try {
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password);
       this.db.object(`profiles/${result.uid}`).update( {isOnline: true });
+      console.log(this.afAuth);
       this.navCtrl.setRoot('TabsPage', {uid: result.uid, auth: this.afAuth});
     }
     catch(e) {
