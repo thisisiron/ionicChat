@@ -54,6 +54,7 @@ export class InboxPage {
           peer.id = (DBmsg.fromId == this.myid) ? DBmsg.toId : DBmsg.fromId;
         });
       });
+      console.log(msgs);
       return msgs;
     });
   }

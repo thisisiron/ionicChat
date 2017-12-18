@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{profile?.firstName}} {{profile?.lastName}}</ion-title>
+    <ion-title>{{peername}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ng-container *ngFor="let msg of messageList |async">
-    <ion-item *ngIf="(msg.fromID == myuid) && (msg.toID == profile.key)">
+    <ion-item *ngIf="(msg.fromID == myuid) && (msg.toID == peerid)">
       <ion-avatar class="chat_left" item-left>
         <img src="assets/imgs/avatar.png">
       </ion-avatar>
@@ -23,7 +23,7 @@
       <p>{{msg.content}}</p>
     </ion-item>
 
-    <ion-item class="chat_right" *ngIf="(msg.toID == myuid) && (msg.fromID==profile.key)" >
+    <ion-item class="chat_right" *ngIf="(msg.toID == myuid) && (msg.fromID==peerid)" >
       <ion-avatar item-right>
         <img src="assets/imgs/avatar.png">
       </ion-avatar>
@@ -38,7 +38,7 @@
     <ion-grid> 
       <ion-row>
         <ion-col col-9>
-          <ion-textarea [(ngModel)]="content" placeholder="Enter message"></ion-textarea>
+          <ion-textarea [(ngModel)]="content_" placeholder="Enter message"></ion-textarea>
         </ion-col>
         <ion-col col-3>
           <button ion-button clear (click)="sendMsg()">Submit</button>
