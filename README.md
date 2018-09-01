@@ -19,7 +19,7 @@ ionic serve
 
 ## Example
 ### register
-<img src="./images/KakaoTalk_20171218_225647842.jpg" alt="register" />
+<img src="./images/KakaoTalk_20171218_225647842.jpg" alt="register"  height="800"/>
 
 ### login
 <img src="./images/KakaoTalk_20171218_225648190.jpg" alt="login" />
